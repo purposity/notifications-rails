@@ -142,16 +142,16 @@ module NotificationSettings
       end
 
       def delivery_method_setting(object, delivery_method, default)
-        object.settings.delivery_methods_.fetch(delivery_method.to_s, default)
+        object.delivery_methods_settings.fetch(delivery_method.to_s, default)
       end
 
       def category_settings(object, category)
-        object.settings.categories_.send("#{category}_")
+        object.category_settings.fetch(category)
       end
 
       def category_delivery_method_setting(object, category, delivery_method,
                                            default)
-        category_settings(object, category).delivery_methods_
+        category_settings(object, category).fetch('delivery_methods_')
                                            .fetch(delivery_method.to_s, default)
       end
 

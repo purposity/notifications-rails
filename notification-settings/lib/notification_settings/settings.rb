@@ -9,7 +9,9 @@ module NotificationSettings
     included do
       before_validation :build_settings
 
-      serialize :settings, HashSerializer
+      jsonb_accessor :settings,
+        category_settings: [:hash, default: {}, store_key: :categories_ ]
+        delivery_method_settings: [:hash, default: {}, store_key: :delivery_methods_ ]
 
       include NotificationSettings::Settings::InstanceMethods
     end
