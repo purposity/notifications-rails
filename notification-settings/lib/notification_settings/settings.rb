@@ -7,7 +7,21 @@ module NotificationSettings
     extend ActiveSupport::Concern
 
     included do
-      jsonb_accessor :settings
+      before_validation :build_settings
+
+      serialize :settings, Hash
+
+      include NotificationSettings::Settings::InstanceMethods
+    end
+
+    module InstanceMethods
+      private
+
+      def build_settings
+        return if settings.present? && settings.is_a?(Hash)
+
+        self.settings = Hash.new
+      end
     end
   end
 end
