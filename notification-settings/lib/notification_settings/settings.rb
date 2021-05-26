@@ -10,7 +10,7 @@ module NotificationSettings
       before_validation :build_settings
 
       jsonb_accessor :settings,
-        category_settings: [:hash, default: {}, store_key: :categories_ ]
+        category_settings: [:hash, default: {}, store_key: :categories_ ],
         delivery_method_settings: [:hash, default: {}, store_key: :delivery_methods_ ]
 
       include NotificationSettings::Settings::InstanceMethods
