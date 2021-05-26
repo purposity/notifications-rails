@@ -17,7 +17,7 @@ class NotificationSettingsMigration < ActiveRecord::Migration<%= migration_versi
                      name: 'idx_subscriptions_subscribable_type_subscribable_id'
                    }
 
-      t.text :settings
+      t.jsonb :settings
 
       t.timestamps
     end

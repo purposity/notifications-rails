@@ -8,7 +8,7 @@ class NotificationHandlerMigration < ActiveRecord::Migration<%= migration_versio
 
       t.boolean :read, default: false, null: false, index: true
 
-      t.text :metadata
+      t.jsonb :metadata
 
       t.timestamps
     end

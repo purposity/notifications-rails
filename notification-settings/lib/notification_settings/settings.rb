@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'active_support'
-require 'hashie'
 
 module NotificationSettings
   module Settings
@@ -10,7 +9,7 @@ module NotificationSettings
     included do
       before_validation :build_settings
 
-      serialize :settings, Hashie::Mash
+      serialize :settings, HashSerializer
 
       include NotificationSettings::Settings::InstanceMethods
     end
@@ -19,9 +18,9 @@ module NotificationSettings
       private
 
       def build_settings
-        return if settings.present? && settings.is_a?(Hashie::Mash)
+        return if settings.present? && settings.is_a?(Hash)
 
-        self.settings = Hashie::Mash.new
+        self.settings = Hash.new
       end
     end
   end
