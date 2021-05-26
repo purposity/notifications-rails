@@ -11,7 +11,7 @@ module NotificationHandler
 
       after_commit :cache
 
-      serialize :metadata, Hash
+      jsonb_accessor :metadata
 
       belongs_to :target, polymorphic: true
       belongs_to :object, polymorphic: true, optional: true
